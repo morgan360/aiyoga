@@ -1,0 +1,26 @@
+{% extends "base1.html" %}
+{% load static %}
+{% block content %}
+    <div style="margin:50px">
+        <h4 style="color: white">Describe is bothering you?</h4><br>
+        <form method="post">
+            {% csrf_token %}
+            <label for="question">Question:</label>
+            <input type="text" id="question" name="question">
+            <input type="submit" value="Submit">
+        </form><br>
+        {% if image_url %}
+    <div style="color: yellowgreen">{{ question }}</div>
+        <div style="color: white">{{ answer }}</div>
+{#        <div style="color: white">{{ image_url }}</div>#}
+
+
+            <h2 style="color: white">Image:</h2>
+            <img src="{{ image_url }}" width="300"  alt="generated">
+        {% else %}
+            {% if error %}
+                <p>{{ error }}</p>
+            {% endif %}
+        {% endif %}
+    </div>
+{% endblock content %}

@@ -1,0 +1,100 @@
+.bg-image {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+.navbar1 {
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+}
+
+/*.navbar1 {*/
+/*    position: absolute;*/
+/*    top: 10%;*/
+/*    left:20%;*/
+/*    transform: translate(-50%, -50%);*/
+/*}*/
+
+
+.nav-link {
+    color: white;
+}
+
+.nav-link:hover {
+    color: red;
+}
+
+
+body {
+    display: flex;
+    /*flex-direction: column;*/
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: left;
+}
+
+.container-transparent {
+    background-color: transparent;
+    color: white;
+    height: 60px;
+    text-align: center;
+    text-decoration-style: wavy;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.type {
+    width: 65%;
+    animation: typing 2s steps(22), blink .5s step-end infinite alternate;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: center;
+    /*border-right: 3px solid;*/
+    font-family: monospace;
+    font-size: 1em;
+}
+
+@keyframes typing {
+    from {
+        width: 0
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+
+    }
+}
+
+h1 {
+    color: white;
+    text-align: center;
+}
+label {
+    color: white;
+    text-align: center;
+}

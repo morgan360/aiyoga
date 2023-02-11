@@ -1,0 +1,85 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% load bootstrap_icons %}
+
+    <title>TAI-Yoga</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+</head>
+<body class="d-flex flex-column h-100">
+<div class="bg-image" style="background-image: url({% static 'images/bg.jpg' %});">
+<div class="container-fluid">
+    <div class="container-transparent mt-5">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+ <div>
+    <nav class="navbar1 navbar navbar-expand-lg navbar-light bg-transparent">
+        <!-- Navbar content goes here -->
+        <a class="navbar-brand" href="{% url 'home' %}">
+            <img src="{% static 'images/logo_bw.png' %}" alt="logo" width="40" height="30"
+                 class="d-inline-block align-text-top">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/image/">Images</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/yoga/">Yoga Poses</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/create_ai_form">AI Form</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin">Admin</a>
+                </li>
+            </ul>
+        </div>
+
+
+        {% if user.is_authenticated %}
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <p class="nav-link text-success">Welcome - {{ user.username }}</p>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="accounts/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        {% else %}
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="nav">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="accounts/login">Login</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="accounts/signup">Register</a>
+                    </li>
+                </ul>
+            </div>
+        {% endif %}
+    </nav>
+ </div>
+    <footer class="footer ms-4 mb-2 bg-transparent">
+            <span class="text-light">Copywrite: T-AI</span>
+    </footer>
+
+</div>
+</div>
+</body>
+</html>
