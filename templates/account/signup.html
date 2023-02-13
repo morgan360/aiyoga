@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Register" %}{% endblock %}
+
+{% block content %}
+    <div class="container overflow-hidden">
+        <div class="row">
+            <div class="col-sm border mb-3 mor_form">
+                <h1 style="color: black">{% trans "Register" %}</h1>
+
+                <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">Login</a>
+                    .{% endblocktrans %}
+                </p>
+                {#Form starts here#}
+                <form class="signup " id="signup_form" method="post" action="{% url 'account_signup' %} ">
+                    {% csrf_token %}
+                    {#                    {{ form|crispy }}#}
+                    {% if redirect_field_value %}
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                    {% endif %}
+                    {# Fields #}
+                    <div class="row">
+                        <div class="col-md4">
+                            {{ form.email.errors | safe }}
+                            {{ form.email|as_crispy_field }}
+                                {{ form.username.errors | safe }}
+                                {{ form.group | as_crispy_field }}
+                                {{ form.username.errors | safe }}
+                                {{ form.password1|as_crispy_field }}
+                                {{ form.username.errors | safe }}
+                                {{ form.password2 | as_crispy_field }}
+                                <button class="btn btn-primary mb-3" type="submit">Register &raquo;</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

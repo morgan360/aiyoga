@@ -95,6 +95,14 @@ h1 {
     text-align: center;
 }
 label {
-    color: white;
+    color: black;
     text-align: center;
+}
+
+/*a {*/
+/*    color:lightgoldenrodyellow;*/
+/*}*/
+
+.mor_form {
+    background-color: white;
 }

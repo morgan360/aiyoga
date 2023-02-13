@@ -11,22 +11,28 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
+import environ
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
+
+OPEN_API_KEY = env('OPENAI_API_KEY')
+SECRET_KEY = env('DJANGO_SECRET_KEY')
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-k=o@hz$neh@3&84z+r28qd+stw+ye#f=2f34(1jr*-x7k(9@6g'
+# SECRET_KEY = 'django-insecure-k=o@hz$neh@3&84z+r28qd+stw+ye#f=2f34(1jr*-x7k(9@6g'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -37,11 +43,21 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',  # Allauth
+    'allauth',  # Allauth
+    'allauth.account',  # Allauth
+    'allauth.socialaccount',  # Allauth
+    'allauth.socialaccount.providers.google',  # Allauth
+    'allauth.socialaccount.providers.facebook',  # Allauth
+    'import_export',
     'crispy_forms',
+    'crispy_bootstrap5',
     "debug_toolbar",
     "bootstrap5",
     'django_bootstrap_icons',
+    # My Apps
     'ai',
+    'user',
 ]
 
 MIDDLEWARE = [
@@ -75,7 +91,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -85,7 +100,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -105,7 +119,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -113,10 +126,9 @@ LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
-USE_I18N = True
+USE_I18N = False
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
@@ -130,6 +142,88 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static/')]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Crispy Forms
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+# Allauth
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+
+# Allauth
+AUTH_USER_MODEL = 'user.CustomUser'
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/'
+
+# Overriding allauth forms
+ACCOUNT_FORMS = {
+    'signup': 'user.forms.CustomSignupForm',
+}
+SOCIALACCOUNT_FORMS = {
+    'signup': 'user.forms.SocialSignupForm',
+}
+
+# ACCOUNT_SIGNUP_FORM_CLASS = 'user.forms.SocialSignupForm'
+# SOCIALACCOUNT_AUTO_SIGNUP = True
+
+# ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_UNIQUE = True
+ACCOUNT_EMAIL_VERIFICATION = "none"
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
+ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 300
+SOCIALACCOUNT_AUTO_SIGNUP = False
+ACCOUNT_LOGOUT_REDIRECT_URL = "/"
+# disable sign out confirmation
+ACCOUNT_LOGOUT_ON_GET = True
+# disable sign in confirmation
+SOCIALACCOUNT_LOGIN_ON_GET = True
+# ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_USERNAME_REQUIRED = False
+#
+# Will remember you
+# ACCOUNT_SESSION_REMEMBER = True
+
+#  Allauth social accounts
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
+        'OAUTH_PKCE_ENABLED': True,
+    }, 'facebook': {
+        'METHOD': 'oauth2',
+        # 'SDK_URL': '//connect.facebook.net/{locale}/sdk.js',
+        'SCOPE': ['email', 'public_profile'],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'INIT_PARAMS': {'cookie': True},
+        'FIELDS': [
+            'id',
+            'first_name',
+            'last_name',
+            'middle_name',
+            'name',
+            'name_format',
+            'picture',
+            'short_name'
+        ],
+        'EXCHANGE_TOKEN': True,
+        # 'LOCALE_FUNC': 'path.to.callable',
+        'VERIFIED_EMAIL': False,
+        'VERSION': 'v13.0',
+        'GRAPH_API_URL': 'https://graph.facebook.com/v13.0',
+    }
+}
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# Allow IMPORT_EXPORT transactions in db
+IMPORT_EXPORT_USE_TRANSACTIONS = True
 
 # Debug Toolbar
 INTERNAL_IPS = [
