@@ -5,6 +5,21 @@ OPEN_API_KEY = os.getenv('OPENAI_API_KEY')
 
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
+DATABASES = {
+
+    'other': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    },
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'morganmck$tcsp_project',
+        'USER': 'morganmck',
+        'PASSWORD': 'Mongo@8899',
+        'HOST': 'morganmck.mysql.eu.pythonanywhere-services.com',
+
+    }
+}
 
 """
 Django settings for core project.
