@@ -13,7 +13,7 @@ DATABASES = {
     },
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'morganmck$tcsp_project',
+        'NAME': 'morganmck$aiyoga',
         'USER': 'morganmck',
         'PASSWORD': 'Mongo@8899',
         'HOST': 'morganmck.mysql.eu.pythonanywhere-services.com',
