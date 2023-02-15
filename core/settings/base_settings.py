@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     # My Apps
     'ai',
     'user',
+    'poses',
 ]
 
 MIDDLEWARE = [
