@@ -7,6 +7,8 @@ import openai
 import os
 from django.conf import settings
 import environ
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
 
 API_KEY = getattr(settings, 'OPEN_API_KEY', None)
 # env = environ.Env()
@@ -24,6 +26,7 @@ def home_page(request):
 
 
 # This works calls Yoga.html
+@login_required
 def ask_question(request):
     if request.method == 'POST':
         question = request.POST.get('question')
@@ -69,6 +72,7 @@ def ask_question(request):
     return render(request, 'ai/yoga.html', context)
 
 
+@login_required
 def create_ai_form(request):
     if request.method == 'POST':
         form = CreateAiForm(request.POST)

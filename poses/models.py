@@ -1,9 +1,9 @@
 from django.db import models
 
+
 # Create your models here.
-from django.db import models
-
-
+# PoseType
+# Poses
 class PoseType(models.Model):
     name = models.CharField(max_length=100)
 
@@ -12,9 +12,10 @@ class PoseType(models.Model):
 
 
 class Poses(models.Model):
-    english_name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
     sanskrit_name = models.CharField(max_length=100)
-    pose_type = models.ManyToManyField(PoseType)
+    description = models.TextField(blank=True, null=True)
+    types = models.ManyToManyField(PoseType)
 
     def __str__(self):
         return f"{self.english_name} ({self.sanskrit_name})"

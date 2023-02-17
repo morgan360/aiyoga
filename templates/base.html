@@ -89,11 +89,27 @@
                     <a class="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/yoga/">Yoga Poses</a>
+                    <a class="nav-link" href="/yoga/">Yoga AI</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/create_ai_form/">AI Form</a>
                 </li>
+                <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Yoga
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/pose/poses/">Poses List</a></li>
+            <li><a class="dropdown-item" href="/pose/poses/new/">Poses Add</a></li>
+            <li><a class="dropdown-item" href="/display/slideshow/">Image Carosel</a>
+            <li><a class="dropdown-item" href="/pose/poses/new/">Poses Add</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/yoga/">Yoga AI</a></li>
+          </ul>
+        </li>
+
+
+
                 <li class="nav-item">
                     <a class="nav-link" href="/admin">Admin</a>
                 </li>
@@ -105,7 +121,7 @@
                         <p class="nav-link text-success" >Welcome - {{user.username}}</p>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="accounts/logout">Logout</a>
+                        <a class="nav-link" href="/accounts/logout">Logout</a>
                     </li>
                 </ul>
             </div>

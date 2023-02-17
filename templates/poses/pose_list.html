@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Poses</h1>
+    <a href="{% url 'pose_new' %}">Add new pose</a>
+    <table class="table mor_form">
+        <thead>
+        <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Sanskrit</th>
+            <th>Types</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <p> Total Poses {{ count }}</p>
+        {% for pose in page_obj %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ pose.name }}</td>
+                <td>{{ pose.sanskrit_name }}</td>
+               <td>{{ pose.description }}</td>
+                <td>
+                    {% for type in pose.types.all %}
+                        {{ type.name }}{% if not forloop.last %}, {% endif %}
+                    {% empty %}
+                        No types found
+                    {% endfor %}
+                </td>
+                <td><a href="{% url 'pose_edit' pk=pose.pk %}">Edit</a></td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="4">No poses found.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="pagination">
+
+        <div class="d-flex justify-content-between align-items-center">
+        <span class="step-links">
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-light">Previous</a>
+    {% else %}
+        <a class="btn btn-light disabled" tabindex="-1" aria-disabled="true">Previous</a>
+    {% endif %}
+        <span class="current-page mor_label m-4">
+        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        </span>
+
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}" class="btn btn-light">Next</a>
+    {% else %}
+        <a class="btn btn-light disabled" tabindex="-1" aria-disabled="true">Next</a>
+   {% endif %}</span>
+</div>
+
+
+    </div>
+{% endblock %}
+
+{% block extra_css %}
+    {{ form.media.css }}
+{% endblock %}
+

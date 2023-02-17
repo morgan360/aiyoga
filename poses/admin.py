@@ -7,7 +7,7 @@ from .models import Poses, PoseType
 
 
 class PoseAdmin(ImportExportMixin, admin.ModelAdmin):
-    list_display = ['english_name', 'sanskrit_name']
+    list_display = ['name', 'sanskrit_name']
 
 
 class PoseTypeAdmin(ImportExportMixin, admin.ModelAdmin):
