@@ -20,7 +20,7 @@ def retrieve_most_similar_query(
     embeddings = model.encode([current_query], convert_to_tensor=True)
     # in future save and store in DB
     embeddings_saved = model.encode(saved_queries, convert_to_tensor=True)
-    cosine_scores = np.array(util.cos_sim(embeddings, embeddings_saved))
+    cosine_scores = np.array(util.cos_sim(embeddings, embeddings_saved)).tolist()[0]
     closest_query_score = cosine_scores[np.argmax(cosine_scores)]
     closest_query = saved_queries[np.argmax(cosine_scores)]
     return {closest_query: np.float(closest_query_score)}
