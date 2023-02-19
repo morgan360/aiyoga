@@ -12,3 +12,7 @@ class PoseForm(forms.ModelForm):
     class Meta:
         model = Poses
         fields = ['name', 'description', 'types']
+
+
+class PoseSelectForm(forms.Form):
+    pose_data = forms.ModelChoiceField(queryset=Poses.objects.all())

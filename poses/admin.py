@@ -8,6 +8,7 @@ from .models import Poses, PoseType
 
 class PoseAdmin(ImportExportMixin, admin.ModelAdmin):
     list_display = ['name', 'sanskrit_name']
+    list_filter = ['name']
 
 
 class PoseTypeAdmin(ImportExportMixin, admin.ModelAdmin):

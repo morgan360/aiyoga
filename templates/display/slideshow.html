@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{#{% load static %}#}
 {% block content %}
 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" style="width: 800px; height: 533px;">
   <ol class="carousel-indicators">
@@ -10,7 +10,8 @@
   <div class="carousel-inner" style="width: 800px; height: 533px;">
     {% for image in images %}
     <div class="carousel-item {% if forloop.first %}active{% endif %}" style="width: 800px; height: 533px;">
-      <img src="{% get_static_prefix %}{{ image.image }}" class="d-block w-100 img-fluid" alt="My Image" style="object-fit: contain; width: 100%; height: 100%;">
+    <img src="{{ image.image.url }}" class="d-block w-100 img-fluid" alt="My Image" style="object-fit: contain; width: 100%; height: 100%;">
+{#      <img src="{% get_static_prefix %}{{ image.image }}" class="d-block w-100 img-fluid" alt="My Image" style="object-fit: contain; width: 100%; height: 100%;">#}
       <div class="carousel-caption d-none d-md-block">
         <h5>{{ image.title }}</h5>
 {#        <p>{{ image.description }}</p>#}

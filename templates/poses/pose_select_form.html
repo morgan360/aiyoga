@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
+{% block content %}
+    <!-- Title row -->
+    <div class="row bg-dark text-light py-3">
+        <div class="col">
+            <h1 class="text-center">Yoga Poses</h1>
+        </div>
+    </div>
+    <div class="row bg-dark text-light py-3">
+        <div class="col col-md-4">
+            <h3>Select a record:</h3>
+        </div>
+        <div class="col col-md-4">
+            <div class='form-group'>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button class="btn btn-secondary" type="submit">Select</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% if pose_data %}
+        <!-- Three-column row -->
+        <div class="row py-5">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Instructions</h5>
+                        <p>{{ pose_data.instructions }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                         <h5 class="card-title">{{ pose_data.name }}</h5>
+{#                        <h2 class='mor_label'>{{ pose_data.name }}</h2>#}
+                        <img src="{{ pose_data.image.image.url }}" class="d-block w-100 img-fluid" alt="My Image"
+                             style="max-width: 600px; max-height: 450px;">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                         <h5 class="card-title">Tips</h5>
+                        <p>{{ pose_data.tips }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    </div>
+{% endblock %}
+
+
+
+{#    #}
+{#        {% if pose_data %}#}
+{#            <h2 class='mor_label'>{{ pose_data.name }}</h2>#}
+{#            <img src="{{ pose_data.image.image.url }}" class="d-block w-100 img-fluid" alt="My Image"#}
+{#                 style="max-width: 600px; max-height: 450px;">#}
+{#        {% endif %}#}
+
