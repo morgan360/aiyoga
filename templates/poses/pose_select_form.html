@@ -29,7 +29,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Instructions</h5>
-                        <p>{{ pose_data.instructions }}</p>
+                        <p>{{ pose_data.instructions|safe }}</p>
                     </div>
                 </div>
             </div>
@@ -47,7 +47,7 @@
                 <div class="card">
                     <div class="card-body">
                          <h5 class="card-title">Tips</h5>
-                        <p>{{ pose_data.tips }}</p>
+                        <p>{{ pose_data.tips|safe }}</p>
                     </div>
                 </div>
             </div>

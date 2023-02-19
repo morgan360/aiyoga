@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "bootstrap5",
     'django_bootstrap_icons',
+    'django_summernote',
     # My Apps
     'ai',
     'user',
@@ -226,6 +227,6 @@ if DEBUG:
 
 # Allow IMPORT_EXPORT transactions in db
 IMPORT_EXPORT_USE_TRANSACTIONS = True
-
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 # Debug Toolbar
 
