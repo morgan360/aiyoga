@@ -127,5 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-#Django
-#manage.py
+
+# Morgan's Ignores
+# Django
+manage.py

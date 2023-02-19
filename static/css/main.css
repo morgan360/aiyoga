@@ -109,3 +109,8 @@ label {
 .mor_label {
     color: white;
 }
+.container {
+  height: 100vh; /* adjust the height to the viewport height */
+  max-width: 800px; /* adjust the width to your desired value */
+  margin: 0 auto; /* center the container horizontally */
+}

@@ -1,11 +1,17 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+    <div class="container d-flex align-items-center">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <a href="{% url 'ask_question' %}" style="text-decoration: none">
+                    <h1><img src="{% static 'images/logo_bw.png' %}" alt="logo" width="75"
+                                                 height="75">-Yoga &raquo;</h1>
+                </a>
+            </div>
+        </div>
+    </div>
+    {#            <p class="mx-auto text-warning "  style="width: 1000px;">Welcome to our AI-powered Yoga website! Here, you can create customized yoga sessions tailored to your needs and preferences. Whether you want to relieve stress, improve flexibility, or alleviate specific health conditions, our AI technology will provide you with the perfect yoga routine. Simply select the duration, type of ailment, and follow our step-by-step instructions, accompanied by images and videos to guide you through each pose. We hope that you enjoy your personalized yoga journey with us! Namaste.</p>#}
 
-    <a href="{% url 'ask_question' %}" style = "text-decoration: none">
-        <h1 class="text-center"><img src="{% static 'images/logo_bw.png' %}" alt="logo" width="75" height="75">-Yoga &raquo;</h1>
-    </a>
-{#            <p class="mx-auto text-warning "  style="width: 1000px;">Welcome to our AI-powered Yoga website! Here, you can create customized yoga sessions tailored to your needs and preferences. Whether you want to relieve stress, improve flexibility, or alleviate specific health conditions, our AI technology will provide you with the perfect yoga routine. Simply select the duration, type of ailment, and follow our step-by-step instructions, accompanied by images and videos to guide you through each pose. We hope that you enjoy your personalized yoga journey with us! Namaste.</p>#}
-
-{#    <a class="btn btn-lg btn-light text-center ml-5" href="{% url 'ask_question' %}" role="button">Proceed &raquo;</a>#}
+    {#    <a class="btn btn-lg btn-light text-center ml-5" href="{% url 'ask_question' %}" role="button">Proceed &raquo;</a>#}
 {% endblock content %}
