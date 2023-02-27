@@ -131,3 +131,6 @@ dmypy.json
 # Morgan's Ignores
 # Django
 manage.py
+/notebooks/
+
+/.idea
